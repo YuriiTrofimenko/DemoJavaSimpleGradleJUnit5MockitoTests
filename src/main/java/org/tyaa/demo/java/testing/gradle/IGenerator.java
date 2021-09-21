@@ -1,5 +1,7 @@
 package org.tyaa.demo.java.testing.gradle;
 
+import java.util.List;
+
 public interface IGenerator {
-    char[] generate(char startChar, char endChar);
+    List<Character> generate(char startChar, char endChar);
 }

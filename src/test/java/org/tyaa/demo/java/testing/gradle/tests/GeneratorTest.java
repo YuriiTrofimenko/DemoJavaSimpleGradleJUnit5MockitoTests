@@ -8,6 +8,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.tyaa.demo.java.testing.gradle.Generator;
 import org.tyaa.demo.java.testing.gradle.IGenerator;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -15,10 +17,10 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 public class GeneratorTest {
 
-    private Generator generator;
+    private static Generator generator;
 
     @BeforeAll
-    public void setupTest() {
+    public static void setupTest() {
         generator = new Generator();
     }
 
@@ -28,12 +30,12 @@ public class GeneratorTest {
     @Test
     public void givenGeneratorMock_whenGenerateCalled_thenCorrectStringGenerated () {
         given(generatorMock.generate('B', 'E'))
-            .willReturn(new char[]{'B', 'C', 'D', 'E'});
-        assertArrayEquals(new char[]{'B', 'C', 'D', 'E'}, generatorMock.generate('B', 'E'));
+            .willReturn(List.of('B', 'C', 'D', 'E'));
+        assertArrayEquals(List.of('B', 'C', 'D', 'E').toArray(), generatorMock.generate('B', 'E').toArray());
     }
 
     @Test
     public void givenGenerator_whenGenerateCalled_thenCorrectStringGenerated () {
-        assertArrayEquals(new char[]{'B', 'C', 'D', 'E'}, generator.generate('B', 'E'));
+        assertArrayEquals(List.of('B', 'C', 'D', 'E').toArray(), generator.generate('B', 'E').toArray());
     }
 }
